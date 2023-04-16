@@ -37,9 +37,11 @@ public class App {
             explore(path, matrixMaze);
             var newState = path.size();
             if (previousState == newState) {
+                System.out.println("maze cannot be resolved");
                 return;
             }
         }
+        System.out.println("maze resolved");
     }
 
     private static void explore(List<Position> path, List<List<String>> matrixMaze) {
@@ -71,9 +73,7 @@ public class App {
     private static Position getBottomPos(Position position, List<List<String>> matrixMaze) {
         if (position.x() + 1 <= matrixMaze.size() - 1
                 && !matrixMaze.get(position.x() + 1).get(position.y()).equals("M")) {
-            Position position1 = new Position(position.x() + 1, position.y());
-            System.out.println(position1 + "valid");
-            return position1;
+            return new Position(position.x() + 1, position.y());
         }
         return null;
     }
@@ -81,9 +81,7 @@ public class App {
     private static Position getRightPos(Position position, List<List<String>> matrixMaze) {
         if (position.y() + 1 <= matrixMaze.get(0).size() - 1
                 && !matrixMaze.get(position.x()).get(position.y() + 1).equals("M")) {
-            Position position1 = new Position(position.x(), position.y() + 1);
-            System.out.println(position1 + "valid");
-            return position1;
+            return new Position(position.x(), position.y() + 1);
         }
         return null;
     }
