@@ -45,11 +45,12 @@ public class App {
     }
 
     private static void explore(List<Position> path, List<List<String>> matrixMaze) {
+        int pathLength = path.size() - 1;
         var adjacent = Stream.of(
-                getRightPos(List.copyOf(path).get(path.size() - 1), matrixMaze),
-                getBottomPos(List.copyOf(path).get(path.size() - 1), matrixMaze),
-                getLeftPos(List.copyOf(path).get(path.size() - 1), matrixMaze),
-                getTopPos(List.copyOf(path).get(path.size() - 1), matrixMaze)
+                getRightPos(path.get(pathLength), matrixMaze),
+                getBottomPos(path.get(pathLength), matrixMaze),
+                getLeftPos(path.get(pathLength), matrixMaze),
+                getTopPos(path.get(pathLength), matrixMaze)
         ).filter(Objects::nonNull).filter(position -> !path.contains(position)).collect(Collectors.toSet());
         path.addAll(adjacent);
     }
